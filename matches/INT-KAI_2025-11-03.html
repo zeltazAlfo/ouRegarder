@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matchs Football en Direct : Ligue 1, Champions League - Où Regarder</title>
+    <meta name="description" content="Tous les matchs de football en direct : Ligue 1, Champions League, Premier League. Où regarder, quelle chaîne TV, streaming gratuit et horaires complets.">
+    <meta name="keywords" content="matchs football, Ligue 1, Champions League, streaming football, où regarder football, chaîne TV football, matchs en direct">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="../style/match.css" />
+    
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔴 Football Live</h1>
+            <p>Tous les matchs en direct • Où regarder • Streaming & TV</p>
+        </header>
+
+        <a href="/" class="back-to-menu">
+            <span>←</span>
+            <span>Retour au menu</span>
+        </a>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une équipe, une ligue...">
+        </div>
+
+        <nav class="competitions-nav">
+            <div class="comp-filter active">Tous</div>
+            <div class="comp-filter">Ligue 1</div>
+            <div class="comp-filter">Champions League</div>
+            <div class="comp-filter">Premier League</div>
+            <div class="comp-filter">Liga</div>
+            <div class="comp-filter">Serie A</div>
+        </nav>
+
+        <section class="today-section">
+            <h2 class="section-title">🔥 Aujourd'hui</h2>
+            <div class="matches-grid">
+                <!-- Les matchs seront générés automatiquement par JavaScript -->
+            </div>
+        </section>
+
+        <section class="upcoming-section">
+            <h2 class="section-title">📅 Prochains Matchs - Cette Semaine</h2>
+            <div class="matches-grid">
+                <!-- Les matchs seront générés automatiquement par JavaScript -->
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Données des matchs
+        //matchesData//
+        let currentFilter = 'Tous';
+        let allMatches = [];
+
+        function getMatchStatus(dateStr, timeStr) {
+            const [year, month, day] = dateStr.split('-');
+            const [hour, minute] = timeStr.split(':');
+            
+            const matchDateTime = new Date(year, month - 1, day, hour, minute);
+            const now = new Date();
+            
+            const diffMinutes = Math.floor((now - matchDateTime) / (1000 * 60));
+            
+            if (diffMinutes < -15) {
+                return {
+                    statut: 'a_venir',
+                    display: timeStr,
+                    isLive: false
+                };
+            } else if (diffMinutes >= -15 && diffMinutes <= 0) {
+                return {
+                    statut: 'pre_match',
+                    display: 'Bientôt',
+                    isLive: false
+                };
+            } else if (diffMinutes > 0 && diffMinutes <= 105) {
+                const tempsJeu = Math.min(diffMinutes, 90);
+                let tempsDisplay = `${tempsJeu}'`;
+                
+                if (diffMinutes > 45 && diffMinutes <= 60) {
+                    tempsDisplay = `45+${diffMinutes - 45}'`;
+                } else if (diffMinutes > 90) {
+                    tempsDisplay = `90+${diffMinutes - 90}'`;
+                }
+                
+                return {
+                    statut: 'live',
+                    display: `En cours • ${tempsDisplay}`,
+                    isLive: true,
+                    temps: tempsDisplay,
+                    score: generateLiveScore()
+                };
+            } else {
+                return {
+                    statut: 'termine',
+                    display: 'Terminé',
+                    isLive: false,
+                    score: generateFinalScore()
+                };
+            }
+        }
+
+        function generateLiveScore() {
+            const score1 = Math.floor(Math.random() * 4);
+            const score2 = Math.floor(Math.random() * 4);
+            return `${score1}-${score2}`;
+        }
+
+        function generateFinalScore() {
+            const score1 = Math.floor(Math.random() * 5);
+            const score2 = Math.floor(Math.random() * 4);
+            return `${score1}-${score2}`;
+        }
+
+        function isToday(dateStr) {
+            const today = new Date();
+            const [year, month, day] = dateStr.split('-');
+            const matchDate = new Date(year, month - 1, day);
+            return matchDate.toDateString() === today.toDateString();
+        }
+
+        function formatMatchDate(dateStr) {
+            const [year, month, day] = dateStr.split('-');
+            const date = new Date(year, month - 1, day);
+            const options = { 
+                day: 'numeric', 
+                month: 'short'
+            };
+            return date.toLocaleDateString('fr-FR', options);
+        }
+
+        function createMatchCard(matchData, date, time) {
+            const matchStatus = getMatchStatus(date, time);
+            
+            const liveIndicator = matchStatus.isLive ? '<div class="live-indicator">🔴 Live</div>' : '';
+            const vsContent = matchStatus.score ? matchStatus.score : 'VS';
+            const timeDisplay = matchStatus.display;
+            
+            let primaryButtonText = 'Voir le Match';
+            if (matchStatus.statut === 'live') {
+                primaryButtonText = 'Regarder Live';
+            } else if (matchStatus.statut === 'pre_match') {
+                primaryButtonText = 'Pré-Match';
+            } else if (matchStatus.statut === 'termine') {
+                primaryButtonText = 'Résumé';
+            }
+            
+            return `
+                <div class="match-card" 
+                     data-competition="${matchData.ligue}"
+                     data-team1="${matchData.equipe1_nom.toLowerCase()}"
+                     data-team2="${matchData.equipe2_nom.toLowerCase()}"
+                     data-search="${matchData.ligue.toLowerCase()} ${matchData.equipe1_nom.toLowerCase()} ${matchData.equipe2_nom.toLowerCase()}">
+                    ${liveIndicator}
+                    <div class="match-header">
+                        <div class="competition">${matchData.ligue}</div>
+                        <div class="match-time">${timeDisplay}</div>
+                    </div>
+                    <div class="teams-matchup">
+                        <div class="team">
+                            <div class="team-logo">${matchData.equipe1}</div>
+                            <div class="team-name">${matchData.equipe1_nom}</div>
+                        </div>
+                        <div class="vs-small">${vsContent}</div>
+                        <div class="team">
+                            <div class="team-logo">${matchData.equipe2}</div>
+                            <div class="team-name">${matchData.equipe2_nom}</div>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <div class="info-item">
+                            <span class="info-label">Stade</span>
+                            ${matchData.stade || 'À confirmer'}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date</span>
+                            ${formatMatchDate(date)}
+                        </div>
+                    </div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn primary">${primaryButtonText}</a>
+                        <a href="#" class="action-btn">Parier</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createNoMatchesMessage(isSearch = false, searchTerm = '') {
+            const icon = isSearch ? '🔍' : '⚽';
+            const message = isSearch ? 
+                `Aucun résultat pour "${searchTerm}"` : 
+                'Aucun match prévu pour cette sélection';
+            
+            return `
+                <div class="no-matches">
+                    <div class="no-matches-icon">${icon}</div>
+                    <div>${message}</div>
+                </div>
+            `;
+        }
+
+        function generateMatches() {
+            const todaySection = document.querySelector('.today-section .matches-grid');
+            const upcomingSection = document.querySelector('.upcoming-section .matches-grid');
+            
+            allMatches = [];
+            let todayMatches = '';
+            let upcomingMatches = '';
+            
+            Object.keys(matchesData).sort().forEach(date => {
+                const matchesForDate = matchesData[date];
+                
+                Object.keys(matchesForDate).sort().forEach(time => {
+                    const matchesAtTime = matchesForDate[time];
+                    const matches = Array.isArray(matchesAtTime) ? matchesAtTime : [matchesAtTime];
+                    
+                    matches.forEach(matchData => {
+                        const matchCard = createMatchCard(matchData, date, time);
+                        allMatches.push({
+                            card: matchCard,
+                            data: matchData,
+                            date: date,
+                            time: time,
+                            isToday: isToday(date)
+                        });
+                        
+                        if (isToday(date)) {
+                            todayMatches += matchCard;
+                        } else {
+                            upcomingMatches += matchCard;
+                        }
+                    });
+                });
+            });
+
+            todaySection.innerHTML = todayMatches || createNoMatchesMessage();
+            upcomingSection.innerHTML = upcomingMatches || createNoMatchesMessage();
+
+            const today = new Date();
+            const todayStr = today.toLocaleDateString('fr-FR', { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long'
+            });
+            document.querySelector('.today-section .section-title').innerHTML = `🔥 Aujourd'hui - ${todayStr}`;
+        }
+
+        function applyFilters(searchTerm = '') {
+            const todaySection = document.querySelector('.today-section .matches-grid');
+            const upcomingSection = document.querySelector('.upcoming-section .matches-grid');
+            
+            let todayMatches = '';
+            let upcomingMatches = '';
+            let todayFound = false;
+            let upcomingFound = false;
+
+            allMatches.forEach(match => {
+                let showMatch = true;
+                
+                // Filtre par compétition
+                if (currentFilter !== 'Tous' && match.data.ligue !== currentFilter) {
+                    showMatch = false;
+                }
+                
+                // Filtre par recherche
+                if (searchTerm && showMatch) {
+                    const searchData = `${match.data.ligue} ${match.data.equipe1_nom} ${match.data.equipe2_nom}`.toLowerCase();
+                    if (!searchData.includes(searchTerm.toLowerCase())) {
+                        showMatch = false;
+                    }
+                }
+                
+                if (showMatch) {
+                    if (match.isToday) {
+                        todayMatches += match.card;
+                        todayFound = true;
+                    } else {
+                        upcomingMatches += match.card;
+                        upcomingFound = true;
+                    }
+                }
+            });
+
+            // Afficher les résultats ou le message approprié
+            if (!todayFound) {
+                todayMatches = searchTerm ? 
+                    createNoMatchesMessage(true, searchTerm) : 
+                    createNoMatchesMessage();
+            }
+            
+            if (!upcomingFound) {
+                upcomingMatches = searchTerm ? 
+                    createNoMatchesMessage(true, searchTerm) : 
+                    createNoMatchesMessage();
+            }
+
+            todaySection.innerHTML = todayMatches;
+            upcomingSection.innerHTML = upcomingMatches;
+        }
+
+        function setupFilters() {
+            const filters = document.querySelectorAll('.comp-filter');
+            
+            filters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    filters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    
+                    currentFilter = filter.textContent.trim();
+                    const searchTerm = document.getElementById('searchInput').value;
+                    applyFilters(searchTerm);
+                });
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value;
+                applyFilters(searchTerm);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateMatches();
+            setupFilters();
+            setupSearch();
+            
+            setInterval(generateMatches, 60000);
+        });
+    </script>
+</body>
+</html>
