@@ -1,0 +1,185 @@
+# Base de connaissances — Cybersécurité à l’EPFL
+
+## 1. Objectif et règles générales
+
+Cette base regroupe les règles de cybersécurité destinées aux étudiants et aux membres de l’EPFL. Elle doit permettre à une IA de retrouver rapidement une consigne, d’expliquer un risque ou de guider un étudiant face à une situation concrète.
+
+**Priorités :**
+1. Protéger les identifiants, les données personnelles et les comptes institutionnels.
+2. Détecter les tentatives de phishing et d’ingénierie sociale.
+3. Sécuriser les appareils et les logiciels.
+4. Prévenir la perte, le vol ou la compromission des données.
+5. Réagir rapidement en cas d’incident.
+
+## 2. Phishing et ingénierie sociale
+
+Le phishing est une technique de fraude visant à obtenir des informations confidentielles (identifiants, mots de passe, coordonnées bancaires) ou à infecter un appareil. L’attaquant peut se faire passer pour l’EPFL, une banque, un service informatique, un organisme public ou un étudiant.
+
+### Signaux d’alerte
+- Signature générique ou impersonnelle.
+- Message urgent exigeant une action immédiate.
+- Menace de blocage du compte, de perte de données ou de suspension d’un service.
+- Absence de moyen de contacter l’expéditeur pour vérifier son identité.
+- Lien redirigeant vers un domaine externe inattendu.
+- Demande de mot de passe, de données bancaires ou d’informations confidentielles.
+- Offre financière trop avantageuse pour être crédible.
+- Fausse bourse, faux remboursement, faux événement ou fausse aide étudiante.
+- Message sur les réseaux sociaux exploitant des informations personnelles publiques.
+
+### Vérification des liens
+- Examiner l’adresse réelle du site avant de cliquer.
+- Les sites institutionnels de l’EPFL utilisent le domaine `epfl.ch` ou ses sous-domaines légitimes.
+- Un site dont le nom ressemble à celui de l’EPFL n’est pas nécessairement officiel.
+- Se méfier des fautes de frappe et des domaines ressemblants, par exemple `epfk.ch`.
+- Ne pas saisir ses identifiants Gaspar sur un site externe ou suspect.
+- En cas de doute, accéder au service depuis un favori connu ou le site officiel de l’EPFL, plutôt que depuis le lien reçu.
+
+### Que faire ?
+- Ne pas cliquer sur le lien ni ouvrir la pièce jointe suspecte.
+- Vérifier le message par un canal indépendant.
+- Contacter le service informatique compétent de l’EPFL si nécessaire.
+- Si les identifiants ont été communiqués, changer immédiatement le mot de passe Gaspar depuis `https://gaspar.epfl.ch/` et signaler l’incident au service informatique de l’EPFL.
+- Si un mot de passe réutilisé est compromis, le changer également sur tous les autres services concernés.
+
+## 3. Mots de passe et identifiants
+
+### Règles impératives
+- Ne jamais communiquer son mot de passe, même à une personne prétendant travailler pour l’EPFL.
+- Ne jamais transmettre ses identifiants par e-mail, téléphone, SMS ou formulaire suspect.
+- Ne jamais réutiliser le même mot de passe sur plusieurs services.
+- Ne jamais écrire son mot de passe sur un appareil, un bureau ou un support facilement accessible.
+- Ne jamais réutiliser un mot de passe déjà compromis.
+
+### Créer des mots de passe robustes
+- Privilégier des mots de passe longs, uniques et difficiles à deviner.
+- Éviter les suites simples, les mots courants et les informations personnelles.
+- Utiliser un gestionnaire de mots de passe fiable pour générer et stocker des mots de passe uniques.
+- Protéger le gestionnaire par un mot de passe maître robuste.
+- Activer l’authentification multifacteur lorsqu’elle est disponible.
+
+### Comprendre les attaques
+- **Force brute :** essai automatisé de nombreuses combinaisons.
+- **Attaque par dictionnaire :** essai de mots et de combinaisons courantes.
+- **Fuite de données :** vol de bases de comptes sur un service compromis.
+- **Attaque par tables arc-en-ciel :** comparaison de condensats précalculés avec des mots de passe hachés volés.
+- **Ingénierie sociale :** manipulation de la victime pour lui faire révéler ses informations.
+
+Le hachage transforme un mot de passe en une empreinte difficile à inverser directement. Le salage consiste à ajouter une valeur supplémentaire avant le hachage afin de compliquer les attaques par précalcul. Ces mécanismes ne dispensent pas de choisir un mot de passe robuste.
+
+## 4. Sécurité des ordinateurs et des logiciels
+
+### Comptes utilisateurs
+- Utiliser un compte aux droits limités pour les activités quotidiennes et la navigation.
+- Réserver le compte administrateur aux opérations de maintenance qui nécessitent réellement des privilèges élevés.
+- Ne pas accorder des droits administrateur à un programme sans raison valable.
+
+### Mises à jour
+Maintenir à jour :
+- Le système d’exploitation.
+- Les logiciels et applications.
+- Le navigateur Internet.
+- Les pilotes et le firmware.
+- L’antivirus et ses bases de détection.
+
+Télécharger les mises à jour depuis les sources officielles des éditeurs.
+
+### Téléchargements
+- Vérifier la fiabilité de la source avant de télécharger.
+- Éviter les logiciels, pièces jointes et fichiers provenant de sources inconnues.
+- Analyser les fichiers téléchargés avec un outil de sécurité adapté.
+- Ne pas exécuter un fichier simplement parce qu’il semble provenir d’un site connu.
+
+### Navigateurs et extensions
+- Limiter les extensions et barres d’outils au strict nécessaire.
+- Vérifier leur éditeur, leurs permissions et leur réputation.
+- Ne pas ignorer les avertissements de sécurité du navigateur.
+- En cas d’alerte alarmiste apparaissant dans une fenêtre inattendue, ne pas appeler le numéro affiché et ne pas suivre le lien proposé. Fermer la page ou le navigateur et vérifier le problème par une voie fiable.
+
+### Propriété intellectuelle
+- Vérifier les droits d’utilisation des images, vidéos, citations, modèles et autres ressources téléchargées.
+- Ne pas supposer qu’une ressource publiée sur Internet est libre de droits.
+- Utiliser des logiciels et ressources dont la licence autorise l’usage envisagé.
+
+## 5. Vol, perte et protection du matériel
+
+### Prévention
+- Ne jamais laisser un ordinateur, une tablette ou un téléphone sans surveillance dans un lieu public.
+- Ne pas considérer qu’un environnement sûr élimine le risque de vol.
+- Activer le verrouillage automatique de l’écran et exiger un mot de passe à la reprise.
+- Chiffrer le disque de l’ordinateur lorsque cette fonctionnalité est disponible.
+- Conserver la clé de récupération du chiffrement dans un endroit sûr, distinct de l’appareil.
+- Protéger les comptes cloud, qui peuvent être accessibles depuis un appareil volé si la session reste ouverte.
+
+L’utilisateur reste responsable des actions réalisées avec ses identifiants : un appareil laissé déverrouillé peut exposer les données et les comptes associés.
+
+## 6. Sauvegardes et prévention de la perte de données
+
+Les appareils peuvent être volés, endommagés ou tomber en panne sans avertissement.
+
+### Bonnes pratiques
+- Effectuer des sauvegardes régulières.
+- Déterminer leur fréquence selon la quantité de données qu’il est acceptable de perdre.
+- Sauvegarder les documents importants et les travaux universitaires.
+- Automatiser les sauvegardes lorsque cela est possible.
+- Vérifier périodiquement que les sauvegardes sont exploitables.
+- Pour les données fréquemment modifiées, utiliser une stratégie de sauvegarde continue ou très fréquente.
+- Conserver une copie dans un emplacement séparé de l’appareil principal.
+
+Une sauvegarde n’est utile que si les données peuvent effectivement être restaurées.
+
+## 7. Risques spécifiques aux étudiants
+
+Les étudiants sont notamment exposés aux risques suivants :
+- Faux messages de l’administration universitaire.
+- Fausses bourses, subventions ou aides financières.
+- Demandes frauduleuses de mise à jour de coordonnées bancaires.
+- Faux billets de concerts et événements.
+- Faux événements étudiants.
+- Usurpation d’identité sur les réseaux sociaux.
+- Tentatives de vol des identifiants universitaires.
+
+Ne jamais fournir d’informations personnelles ou financières uniquement parce qu’un message utilise le nom, le logo ou le vocabulaire de l’université.
+
+## 8. Procédures de réaction rapide
+
+| Situation | Action prioritaire |
+|---|---|
+| E-mail suspect | Ne pas cliquer ; vérifier l’expéditeur et signaler le message si nécessaire. |
+| Mot de passe Gaspar communiqué | Le changer immédiatement sur le site officiel Gaspar et contacter le service informatique de l’EPFL. |
+| Mot de passe réutilisé compromis | Le remplacer sur chaque service où il a été utilisé. |
+| Fichier suspect téléchargé | Ne pas l’exécuter ; l’analyser et demander de l’aide en cas de doute. |
+| Ordinateur perdu ou volé | Sécuriser rapidement les comptes depuis un autre appareil et signaler l’incident. |
+| Perte de données ou panne | Restaurer depuis une sauvegarde vérifiée. |
+| Alerte de sécurité inattendue | Ne pas suivre les instructions affichées sans vérification indépendante. |
+
+## 9. Contexte institutionnel EPFL
+
+L’EPFL est une école polytechnique fédérale située à Lausanne, en Suisse. Son environnement numérique comprend notamment les comptes institutionnels, les services informatiques, les plateformes pédagogiques, les ressources de recherche et les services accessibles sur le campus.
+
+Le compte Gaspar est un identifiant institutionnel important. Sa compromission peut exposer des services ou des données accessibles à son titulaire.
+
+Pour les questions spécifiques à l’EPFL :
+- Privilégier les pages officielles de `epfl.ch` et les communications institutionnelles vérifiées.
+- Vérifier les procédures actuelles auprès des services compétents de l’EPFL.
+- Ne pas inventer de coordonnées, de procédures internes ou de règles institutionnelles.
+- Distinguer les recommandations générales de cybersécurité des règles officielles effectivement en vigueur.
+- Vérifier les informations en ligne lorsqu’une réponse dépend des procédures actuelles.
+
+## 10. Instructions destinées à l’IA
+
+Lorsqu’une question est posée à partir de cette base :
+
+1. Identifier rapidement la catégorie concernée : phishing, mots de passe, appareil, téléchargement, sauvegarde ou incident.
+2. Donner d’abord la consigne essentielle, puis une explication courte du risque.
+3. Si un incident est en cours, présenter les actions prioritaires dans l’ordre.
+4. Pour les problèmes impliquant Gaspar ou des services EPFL, privilégier les ressources officielles et les procédures vérifiées.
+5. Ne jamais demander à l’utilisateur de révéler son mot de passe ou ses codes de sécurité.
+6. Ne pas affirmer qu’un message est authentique uniquement parce qu’il contient le logo ou le nom de l’EPFL.
+7. Si une information est incertaine ou potentiellement obsolète, le signaler et rechercher une source officielle récente.
+8. Répondre de manière concise, précise et directement applicable, sans omettre les précautions critiques.
+
+**Principe central :** vérifier avant de faire confiance, limiter les privilèges, utiliser des mots de passe uniques, maintenir les systèmes à jour et conserver des sauvegardes vérifiées.
+
+---
+
+*Origine : synthèse de sous-titres de formations de sensibilisation à la cybersécurité fournis par l’utilisateur. Les procédures institutionnelles et les coordonnées de contact doivent être vérifiées auprès des sources officielles actuelles de l’EPFL avant d’être présentées comme des règles en vigueur.*
